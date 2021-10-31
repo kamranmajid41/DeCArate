@@ -1,13 +1,4 @@
- /**
-     * simulate a right-click event so we can grab the image URL using the
-     * context menu alleviating the need to navigate to another page
-     *
-     * attributed to @jmiserez: http://pyimg.co/9qe7y
-     *
-     * @param   {object}  element  DOM Element
-     *
-     * @return  {void}
-     */
+
     function simulateRightClick( element ) {
         var event1 = new MouseEvent( 'mousedown', {
             bubbles: true,
@@ -95,7 +86,6 @@
                 '.isv-r a:first-of-type' ), function( element ) {
                 // using the right click menu Google will generate the
                 // full-size URL; won't work in Internet Explorer
-                // (http://pyimg.co/byukr)
                 simulateRightClick( element.querySelector( ':scope img' ) );
                 // Wait for it to appear on the <a> element
                 var interval = setInterval( function() {
@@ -108,9 +98,7 @@
                         if ( fullImageUrl !== 'false' ) {
                             urls.push( fullImageUrl );
                         }
-                        // sometimes the URL returns a "false" string and
-                        // we still want to count those so our Promise
-                        // resolves
+                        // sometimes the URL returns a "false" string 
                         index++;
                         if ( index == ( count - 1 ) ) {
                             resolve( urls );
@@ -123,7 +111,7 @@
     
     
     /**
-     * Call the main function to grab the URLs and initiate the download
+     * Call the main function to get the URLs and initiate the download
      */
     grabUrls().then( function( urls ) {
         urls = urls.join( '\n' );
